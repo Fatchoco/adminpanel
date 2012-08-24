@@ -39,7 +39,12 @@ public class UploadDistributorAdjustmentFilesProcess extends ActionFormValidated
 			//Get File properties
 			FormFile myFile = myForm.getUploadFile();
 			String fileName = new String(myFile.getFileName().getBytes(), "UTF-8").replaceAll(" ", "");
-			//String fileName = myFile.getFileName();
+
+			//File size validation
+			int maxUploadSize= 2560; //in kilobyte
+			int uploadedSize = myFile.getFileSize()/1024; //in kilobyte
+			if(uploadedSize > maxUploadSize)
+				throw new Exception("Uploaded "+fileName+" file size ("+uploadedSize+" KB) exceeds the maximum allowed file size ("+maxUploadSize+" KB).");
 			
 			//Get Server Realpath Save
 			String filePath = getPath.execute(getServlet().getServletContext().getRealPath("/WEB-INF/temp/"));

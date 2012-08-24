@@ -6,7 +6,7 @@
 			key="TKD_DIST_STG">
 			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 			<set-property property="url"
-				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+				value="jdbc:oracle:thin:@192.168.1.134:1521:tpcdb" />
 			<set-property property="username" value="TKD_DIST_STG" />
 			<set-property property="password" value="password" />
 			<set-property property="maxActive" value="15" />
@@ -23,7 +23,7 @@
 			key="TKD_DIST">
 			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 			<set-property property="url"
-				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+				value="jdbc:oracle:thin:@192.168.1.134:1521:tpcdb" />
 			<set-property property="username" value="TKD_DIST" />
 			<set-property property="password" value="password" />
 			<set-property property="maxActive" value="15" />
@@ -40,7 +40,7 @@
 			key="IMS_STG">
 			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 			<set-property property="url"
-				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+				value="jdbc:oracle:thin:@192.168.1.134:1521:tpcdb" />
 			<set-property property="username" value="IMS_STG" />
 			<set-property property="password" value="password" />
 			<set-property property="maxActive" value="15" />
@@ -57,7 +57,7 @@
 			key="IMS_RPT">
 			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 			<set-property property="url"
-				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+				value="jdbc:oracle:thin:@192.168.1.134:1521:tpcdb" />
 			<set-property property="username" value="IMS_RPT" />
 			<set-property property="password" value="password" />
 			<set-property property="maxActive" value="15" />

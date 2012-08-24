@@ -96,7 +96,7 @@ public class IMSFilesInitial extends ActionFormValidated {
 			myConnection	= dataSource.getConnection();
 			stmt	= myConnection.createStatement();
 			ResultSet rset1;
-			rset1 = stmt.executeQuery("SELECT STATUS,JOB,PERIOD FROM PRO_STATUS ORDER BY CREATED_DATE");
+			rset1 = stmt.executeQuery("SELECT STATUS,JOB,PERIOD FROM PRO_STATUS WHERE PERIOD = '"+current_periodo.substring(0, 6)+"' AND COUNTRY_CODE = '"+fcountry+"' ORDER BY CREATED_DATE");
 			//rset1.next();
 				while(rset1.next()) {
 					per=rset1.getString("PERIOD");

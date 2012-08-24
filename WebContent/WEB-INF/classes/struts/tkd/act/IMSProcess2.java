@@ -100,7 +100,7 @@ public class IMSProcess2 implements Runnable {
 					System.out.println(ext.getMessage());
 					myConnection	= pDataSource.getConnection();
 					Statement stmt2	= myConnection.createStatement();
-					stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('FAILED','Extracting Error')");
+					stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('FAILED','Extracting Error','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 					stmt2.execute("COMMIT");
 					stmt2.close();
 					myConnection.close();
@@ -171,7 +171,7 @@ public class IMSProcess2 implements Runnable {
 						{
 							myConnection	= pDataSource.getConnection();
 							Statement stmt2	= myConnection.createStatement();
-							stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('FAILED','Error Clearing Staging Database')");
+							stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('FAILED','Error Clearing Staging Database','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 							stmt2.execute("COMMIT");
 							stmt2.close();
 							myConnection.close();
@@ -226,7 +226,7 @@ public class IMSProcess2 implements Runnable {
 										 myConnection.close();
 										 myConnection	= pDataSource.getConnection();
 										 Statement stmt2	= myConnection.createStatement();
-										 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+										 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 										 stmt2.execute("COMMIT");
 										 stmt2.close();
 										 myConnection.close();
@@ -260,7 +260,7 @@ public class IMSProcess2 implements Runnable {
 										 myConnection.close();
 										 myConnection	= pDataSource.getConnection();
 										 Statement stmt2	= myConnection.createStatement();
-										 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+										 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 										 stmt2.execute("COMMIT");
 										 stmt2.close();
 										 myConnection.close();
@@ -304,7 +304,7 @@ public class IMSProcess2 implements Runnable {
 									 myConnection.close();
 									 myConnection	= pDataSource.getConnection();
 									 Statement stmt2	= myConnection.createStatement();
-									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									 stmt2.execute("COMMIT");
 									 stmt2.close();
 									 myConnection.close();
@@ -355,7 +355,7 @@ public class IMSProcess2 implements Runnable {
 					    			}in.close(); br.close();fstream.close();myConnection.close();
 					    			myConnection	= pDataSource.getConnection();
 									 Statement stmt2	= myConnection.createStatement();
-									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									 stmt2.execute("COMMIT");
 									 stmt2.close();
 									 myConnection.close();
@@ -406,7 +406,7 @@ public class IMSProcess2 implements Runnable {
 					    			}in.close(); br.close();fstream.close();myConnection.close();
 					    			myConnection	= pDataSource.getConnection();
 									 Statement stmt2	= myConnection.createStatement();
-									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									 stmt2.execute("COMMIT");
 									 stmt2.close();
 									 myConnection.close();
@@ -483,7 +483,7 @@ public class IMSProcess2 implements Runnable {
 					    			}in.close(); br.close();fstream.close();myConnection.close();
 					    			myConnection	= pDataSource.getConnection();
 									 Statement stmt2	= myConnection.createStatement();
-									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									 stmt2.execute("COMMIT");
 									 stmt2.close();
 									 myConnection.close();
@@ -543,7 +543,7 @@ public class IMSProcess2 implements Runnable {
 					    			}in.close(); br.close();fstream.close();myConnection.close();
 					    			myConnection	= pDataSource.getConnection();
 									 Statement stmt2	= myConnection.createStatement();
-									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									 stmt2.execute("COMMIT");
 									 stmt2.close();
 									 myConnection.close();
@@ -695,7 +695,7 @@ public class IMSProcess2 implements Runnable {
 					    			}in.close(); br.close();fstream.close();myConnection.close();
 					    			myConnection	= pDataSource.getConnection();
 									 Statement stmt2	= myConnection.createStatement();
-									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									 stmt2.execute("COMMIT");
 									 stmt2.close();
 									 myConnection.close();
@@ -843,7 +843,7 @@ public class IMSProcess2 implements Runnable {
 					    			}in.close(); br.close();fstream.close();myConnection.close();
 					    			myConnection	= pDataSource.getConnection();
 									 Statement stmt2	= myConnection.createStatement();
-									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('RUNNING','"+nama[nama.length-1]+"')");
+									 stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('RUNNING','"+nama[nama.length-1]+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									 stmt2.execute("COMMIT");
 									 stmt2.close();
 					    			}
@@ -853,7 +853,7 @@ public class IMSProcess2 implements Runnable {
 					    			System.out.println(esf.getMessage());
 					    			myConnection	= pDataSource.getConnection();
 									Statement stmt2	= myConnection.createStatement();
-									stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('FAILED','Error Loading Files "+file.toString().substring(74)+"')");
+									stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('FAILED','Error Loading Files "+file.toString().substring(74)+"','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 									stmt2.execute("COMMIT");
 									stmt2.close();
 									myConnection.close();
@@ -863,7 +863,7 @@ public class IMSProcess2 implements Runnable {
 				    }else if(prog.equals("no")){
 				    myConnection	= pDataSource.getConnection();
 					Statement stmt2	= myConnection.createStatement();
-					stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('FAILED','File not completed, cannot process')");
+						stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('FAILED','File not completed, cannot process','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 					stmt2.execute("COMMIT");
 					stmt2.close();
 					myConnection.close();
@@ -884,7 +884,7 @@ public class IMSProcess2 implements Runnable {
 						{
 							myConnection	= pDataSource.getConnection();
 							Statement stmt2	= myConnection.createStatement();
-							stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('FAILED','Error Starting Procedure')");
+							stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('FAILED','Error Starting Procedure','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 							stmt2.execute("COMMIT");
 							stmt2.close();
 							myConnection.close();
@@ -897,7 +897,7 @@ public class IMSProcess2 implements Runnable {
 						}
 						myConnection	= pDataSource.getConnection();
 						Statement stmt2	= myConnection.createStatement();
-						stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('SUCCEEDED','All Files Loaded')");
+						stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('SUCCEEDED','All Files Loaded','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 						stmt2.execute("COMMIT");
 						stmt2.close();
 						myConnection.close();
@@ -905,7 +905,7 @@ public class IMSProcess2 implements Runnable {
 			    		else {
 			    		myConnection	= pDataSource.getConnection();
 						Statement stmt2	= myConnection.createStatement();
-						stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('FAILED','Error Data not procceded')");
+						stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('FAILED','Error Data not procceded','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 						stmt2.execute("COMMIT");
 						stmt2.close();
 						myConnection.close();
@@ -919,7 +919,7 @@ public class IMSProcess2 implements Runnable {
 				System.out.println(ezip.getMessage());
 				myConnection	= pDataSource.getConnection();
 				Statement stmt2	= myConnection.createStatement();
-				stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB) VALUES ('FAILED','Process Error')");
+				stmt2.execute("INSERT INTO PRO_STATUS(STATUS,JOB,COUNTRY_CODE,COUNTRY_DES,PERIOD,SOURCE_FILE_PATH) VALUES ('FAILED','Process Error','"+fcountry+"','"+ncountry+"','"+current_period+"','"+sfp+"')");
 				stmt2.execute("COMMIT");
 				stmt2.close();
 				myConnection.close();
