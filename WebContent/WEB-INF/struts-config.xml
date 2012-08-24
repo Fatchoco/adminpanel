@@ -1,0 +1,589 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources>
+		<data-source type="org.apache.commons.dbcp.BasicDataSource"
+			key="TKD_DIST_STG">
+			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+			<set-property property="url"
+				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+			<set-property property="username" value="TKD_DIST_STG" />
+			<set-property property="password" value="password" />
+			<set-property property="maxActive" value="15" />
+			<set-property property="maxIdle" value="1" />
+			<set-property property="maxWait" value="9000" />
+			<set-property property="minEvictableIdleTimeMillis" value="1800000" />
+			<set-property property="numTestsPerEvictionRun" value="3" />
+			<set-property property="testOnBorrow" value="true" />
+			<set-property property="testWhileIdle" value="true" />
+			<set-property property="testOnReturn" value="true" />
+			<set-property property="validationQuery" value="SELECT 1 FROM DUAL" />
+		</data-source>
+		<data-source type="org.apache.commons.dbcp.BasicDataSource"
+			key="TKD_DIST">
+			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+			<set-property property="url"
+				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+			<set-property property="username" value="TKD_DIST" />
+			<set-property property="password" value="password" />
+			<set-property property="maxActive" value="15" />
+			<set-property property="maxIdle" value="1" />
+			<set-property property="maxWait" value="9000" />
+			<set-property property="minEvictableIdleTimeMillis" value="1800000" />
+			<set-property property="numTestsPerEvictionRun" value="3" />
+			<set-property property="testOnBorrow" value="true" />
+			<set-property property="testWhileIdle" value="true" />
+			<set-property property="testOnReturn" value="true" />
+			<set-property property="validationQuery" value="SELECT 1 FROM DUAL" />
+		</data-source>
+		<data-source type="org.apache.commons.dbcp.BasicDataSource"
+			key="IMS_STG">
+			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+			<set-property property="url"
+				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+			<set-property property="username" value="IMS_STG" />
+			<set-property property="password" value="password" />
+			<set-property property="maxActive" value="15" />
+			<set-property property="maxIdle" value="1" />
+			<set-property property="maxWait" value="9000" />
+			<set-property property="minEvictableIdleTimeMillis" value="1800000" />
+			<set-property property="numTestsPerEvictionRun" value="3" />
+			<set-property property="testOnBorrow" value="true" />
+			<set-property property="testWhileIdle" value="true" />
+			<set-property property="testOnReturn" value="true" />
+			<set-property property="validationQuery" value="SELECT 1 FROM DUAL" />
+		</data-source>
+		<data-source type="org.apache.commons.dbcp.BasicDataSource"
+			key="IMS_RPT">
+			<set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+			<set-property property="url"
+				value="jdbc:oracle:thin:@localhost:1521:orcl" />
+			<set-property property="username" value="IMS_RPT" />
+			<set-property property="password" value="password" />
+			<set-property property="maxActive" value="15" />
+			<set-property property="maxIdle" value="1" />
+			<set-property property="maxWait" value="9000" />
+			<set-property property="minEvictableIdleTimeMillis" value="1800000" />
+			<set-property property="numTestsPerEvictionRun" value="3" />
+			<set-property property="testOnBorrow" value="true" />
+			<set-property property="testWhileIdle" value="true" />
+			<set-property property="testOnReturn" value="true" />
+			<set-property property="validationQuery" value="SELECT 1 FROM DUAL" />
+		</data-source>
+	</data-sources>
+	<form-beans>
+		<form-bean name="FormParSystem" type="struts.tkd.actfrm.FormParSystem" />
+		<form-bean name="FormUploadPage" type="struts.tkd.actfrm.FormUploadPage" />
+		<form-bean name="FormUploadPagePeriod" type="struts.tkd.actfrm.FormUploadPagePeriod" />
+		<form-bean name="FormUploadPageTier" type="struts.tkd.actfrm.FormUploadPageTier" />
+		<form-bean name="FormColumnMapping" type="struts.tkd.actfrm.FormColumnMapping" />
+		<form-bean name="FormAddEditUser" type="struts.tkd.actfrm.FormAddEditUser" />
+		<form-bean name="Frm_LoginProcess" type="struts.tkd.actfrm.Frm_LoginProcess" />
+		<form-bean name="CountryForm" type="struts.tkd.actfrm.CountryForm" />
+		<form-bean name="MenuForm" type="struts.tkd.actfrm.MenuForm" />
+	</form-beans>
+
+	<global-forwards>
+		<forward name="gf_loginpage" path="/Login.tkd" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="/Header" type="struts.tkd.act.Header"   >
+			<forward name="forward" path="/Header.jsp" />
+		</action>
+		<action path="/Header2" type="struts.tkd.act.Header"   >
+			<forward name="forward" path="/Header2.jsp" />
+		</action>
+		
+		<!-- Login -->
+		<action path="/Login" type="org.apache.struts.actions.ForwardAction" parameter="/Login.jsp" />
+		<action path="/LoginProcess" type="struts.tkd.act.LoginProcess"
+				name="Frm_LoginProcess" scope="request" validate="false" input="/Login.jsp">
+			<forward name="ok" path="/MenuMaster.jsp" />
+			<forward name="ok2" path="/MenuIMS.jsp" />
+			<forward name="err" path="/Login.tkd" />
+		</action>
+		<action path="/LogoutUser" type="struts.tkd.act.LogoutUser" parameter="MustLogin" >
+			<forward name="forward" path="/Login.tkd" />
+		</action>
+		
+		<!-- IMSFiles -->
+		<action path="/IMSFiles" type="struts.tkd.act.IMSFilesInitial" parameter="IMS.IUPDAT">
+            <forward name="forward" path="/IMSFiles.jsp" />
+        </action>
+        <action path="/IMSFilesProcess" type="struts.tkd.act.IMSFilesInitial" parameter="IMS.IUPDAT"
+				name="FormUploadPage" scope="request" validate="false" input="/IMSFiles.jsp">
+			<forward name="forward" path="/IMSFiles.jsp" />
+		</action>
+		<action path="/IMSProcess" type="struts.tkd.act.IMSProcess" parameter="MustLogin"
+        		name="FormUploadPage" scope="request" validate="false">
+			<forward name="forward" path="/IMSProcessLoading.tkd" />
+		</action>
+		<action path="/IMSProcessLoading" type="org.apache.struts.actions.ForwardAction" parameter="/IMSProcessLoading.jsp" />
+        <action path="/IMSProcess3" type="struts.tkd.act.IMSProcess3" parameter="MustLogin">
+			<forward name="forward" path="/IMSProcess.jsp" />
+		</action>
+		<action path="/ViewUISummaryIMS" type="struts.tkd.act.ViewUISummaryInitialIMS" parameter="MustLogin">
+			<forward name="forward" path="/ViewUISummaryIMS.jsp" />
+		</action>
+		
+		<!-- IMS Mapping Takeda Cateogry -->
+		<action path="/UploadMappingTakedaCategory" type="struts.tkd.act.UploadMappingTakedaCategoryInitial" parameter="IMS.IUPMAP">
+			<forward name="forward" path="/UploadMappingTakedaCategory.jsp" />
+		</action>
+		<action path="/UploadMappingTakedaCategoryProcess" type="struts.tkd.act.UploadMappingTakedaCategoryProcess" parameter="IMS.IUPMAP"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMappingTakedaCategory.jsp">
+			<forward name="forward" path="/UploadMappingTakedaCategory.tkd" />
+		</action>
+			<action path="/ExportLogMappingTakedaCategory" type="struts.tkd.act.ExportLogMappingTakedaCategory" parameter="IMS.IUPMAP">
+			<forward name="forward" path="/UploadMappingTakedaCategory.tkd" />
+		</action>
+		<action path="/ViewMappingTakedaCategory" type="struts.tkd.act.ViewMappingTakedaCategoryInitial" parameter="IMS.IUPMAP">
+			<forward name="forward" path="/ViewMappingTakedaCategory.jsp" />
+		</action>
+		<action path="/ExportMappingTakedaCategory" type="struts.tkd.act.ExportMappingTakedaCategory" parameter="IMS.IUPMAP">
+			<forward name="forward" path="/ViewMappingTakedaCategory.tkd" />
+		</action>
+		<action path="/DeleteMappingTakedaCategory" type="struts.tkd.act.DeleteMappingTakedaCategory" parameter="IMS.IUPMAP">
+			<forward name="forward" path="/ViewMappingTakedaCategory.tkd" />
+		</action>
+		
+		<!-- System Parameter - Directory Path -->
+		<action path="/ParSystemIMS" type="struts.tkd.act.ParSystemInitialIMS" parameter="IMS.ISETPER">
+			<forward name="forward" path="/ParSystemIMS.jsp" />
+		</action>
+		<action path="/ParSystemProcessIMS" type="struts.tkd.act.ParSystemProcessIMS" parameter="IMS.ISETPER"
+				name="FormParSystem" scope="request" validate="false" input="/ParSystemIMS.jsp">
+			<forward name="forward" path="/ParSystemIMS.tkd" />
+		</action>
+		<action path="/ParSystemDirPath" type="struts.tkd.act.ParSystemDirPathInitial" parameter="IMS.ISETDIR">
+			<forward name="forward" path="/ParSystemDirPath.jsp" />
+		</action>
+		<action path="/ParSystemDirPathProcess" type="struts.tkd.act.ParSystemDirPathProcess" parameter="IMS.ISETDIR"
+				name="FormParSystem" scope="request" validate="false" input="/ParSystemDirPath.jsp">
+			<forward name="forward" path="/ParSystemDirPath.tkd" />
+		</action>
+		
+		<!-- User Management -->
+		<action path="/EditUser" type="struts.tkd.act.EditUser" parameter="DIST.USRMGTEDT" name ="FormAddEditUser" >
+			<forward name="forward" path="/EditUser.jsp" />
+		</action>
+		<action path="/EditUserProcess" type="struts.tkd.act.EditUserProcess" parameter="DIST.USRMGTEDT"  name ="FormAddEditUser" scope="request" input="/EditUser.jsp">
+			<forward name="ok" path="/ViewUserList.tkd" />
+			<forward name="err" path="/EditUser.jsp" />
+		</action>
+		<action path="/DelUserProcess" type="struts.tkd.act.DelUserProcess" parameter="DIST.USRMGTEDT"  >
+			<forward name="forward" path="/ViewUserList.tkd" />
+		</action>
+		<action path="/ChangePassword" type="struts.tkd.act.ChangePassword" name ="FormAddEditUser" parameter="MustLogin">
+			<forward name="forward" path="/ChangePassword.jsp" />
+		</action>
+		<action path="/ChangePasswordProcess" type="struts.tkd.act.ChangePasswordProcess" parameter="MustLogin"  name ="FormAddEditUser" scope="request" input="/ChangePassword.jsp">
+			<forward name="forward" path="/ChangePassword.jsp" />
+		</action>
+		<action path="/ViewUserList" type="struts.tkd.act.ViewUserList" parameter="DIST.USRMGTVEW" >
+			<forward name="forward" path="/ViewUserList.jsp" />
+		</action>
+		<action path="/AddUser" type="struts.tkd.act.AddUser" parameter="DIST.USRMGTADD" >
+			<forward name="forward" path="/AddUser.jsp" />
+		</action>		
+		<action path="/AddUserProcess" type="struts.tkd.act.AddUserProcess" parameter="DIST.USRMGTADD"  name ="FormAddEditUser" scope="request" input="/AddUser.jsp">
+			<forward name="ok" path="/ViewUserList.tkd" />
+			<forward name="err" path="/AddUser.jsp" />
+		</action>
+	
+		<!-- System Parameter Template -->
+		<action path="/ParSystem" type="struts.tkd.act.ParSystemInitial" parameter="DIST.PARMMST">
+			<forward name="forward" path="/ParSystem.jsp" />
+		</action>
+		<action path="/ParSystemProcess" type="struts.tkd.act.ParSystemProcess" parameter="DIST.PARMMST"
+				name="FormParSystem" scope="request" validate="false" input="/ParSystem.jsp">
+			<forward name="forward" path="/ParSystem.tkd" />
+		</action>
+		
+		<!-- MasterProduct -->
+		<action path="/UploadMasterProduct" type="struts.tkd.act.UploadMasterProductInitial" parameter="DIST.PRDMST">
+			<forward name="forward" path="/UploadMasterProduct.jsp" />
+		</action>
+		<action path="/UploadMasterProductProcess" type="struts.tkd.act.UploadMasterProductProcess" parameter="DIST.PRDMST"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMasterProduct.jsp">
+			<forward name="forward" path="/UploadMasterProduct.tkd" />
+		</action>
+		<action path="/ExportLogMasterProduct" type="struts.tkd.act.ExportLogMasterProduct" parameter="DIST.PRDMST">
+			<forward name="forward" path="/UploadMasterProduct.tkd" />
+		</action>
+		<action path="/ViewMasterProduct" type="struts.tkd.act.ViewMasterProductInitial" parameter="DIST.PRDMST">
+			<forward name="forward" path="/ViewMasterProduct.jsp" />
+		</action>
+		<action path="/ExportMasterProduct" type="struts.tkd.act.ExportMasterProduct" parameter="DIST.PRDMST">
+			<forward name="forward" path="/ViewMasterProduct.tkd" />
+		</action>
+		<action path="/DeleteMasterProduct" type="struts.tkd.act.DeleteMasterProduct" parameter="DIST.PRDMST">
+			<forward name="forward" path="/ViewMasterProduct.tkd" />
+		</action>
+		
+		<!-- MasterDistributorPrice -->
+		<action path="/UploadMasterDistributorPrice" type="struts.tkd.act.UploadMasterDistributorPriceInitial" parameter="DIST.DISTPRICEMST">
+			<forward name="forward" path="/UploadMasterDistributorPrice.jsp" />
+		</action>
+		<action path="/UploadMasterDistributorPriceProcess" type="struts.tkd.act.UploadMasterDistributorPriceProcess" parameter="DIST.DISTPRICEMST"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMasterDistributorPrice.jsp">
+			<forward name="forward" path="/UploadMasterDistributorPrice.tkd" />
+		</action>
+		<action path="/ExportLogMasterDistributorPrice" type="struts.tkd.act.ExportLogMasterDistributorPrice" parameter="DIST.DISTPRICEMST">
+			<forward name="forward" path="/UploadMasterDistributorPrice.tkd" />
+		</action>
+		<action path="/ViewMasterDistributorPrice" type="struts.tkd.act.ViewMasterDistributorPriceInitial" parameter="DIST.DISTPRICEMST">
+			<forward name="forward" path="/ViewMasterDistributorPrice.jsp" />
+		</action>
+		<action path="/ExportMasterDistributorPrice" type="struts.tkd.act.ExportMasterDistributorPrice" parameter="DIST.DISTPRICEMST">
+			<forward name="forward" path="/ViewMasterDistributorPrice.tkd" />
+		</action>
+		<action path="/DeleteMasterDistributorPrice" type="struts.tkd.act.DeleteMasterDistributorPrice" parameter="DIST.DISTPRICEMST">
+			<forward name="forward" path="/ViewMasterDistributorPrice.tkd" />
+		</action>
+		
+		<!-- MasterDistributor -->
+		<action path="/UploadMasterDistributor" type="struts.tkd.act.UploadMasterDistributorInitial" parameter="DIST.DISTMST">
+			<forward name="forward" path="/UploadMasterDistributor.jsp" />
+		</action>
+		<action path="/UploadMasterDistributorProcess" type="struts.tkd.act.UploadMasterDistributorProcess" parameter="DIST.DISTMST"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMasterDistributor.jsp">
+			<forward name="forward" path="/UploadMasterDistributor.tkd" />
+		</action>
+		<action path="/ExportLogMasterDistributor" type="struts.tkd.act.ExportLogMasterDistributor" parameter="DIST.DISTMST">
+			<forward name="forward" path="/UploadMasterDistributor.tkd" />
+		</action>
+		<action path="/ViewMasterDistributor" type="struts.tkd.act.ViewMasterDistributorInitial" parameter="DIST.DISTMST">
+			<forward name="forward" path="/ViewMasterDistributor.jsp" />
+		</action>
+		<action path="/ExportMasterDistributor" type="struts.tkd.act.ExportMasterDistributor" parameter="DIST.DISTMST">
+			<forward name="forward" path="/ViewMasterDistributor.tkd" />
+		</action>
+		<action path="/DeleteMasterDistributor" type="struts.tkd.act.DeleteMasterDistributor" parameter="DIST.DISTMST">
+			<forward name="forward" path="/ViewMasterDistributor.tkd" />
+		</action>
+		
+		<!-- MasterCustomer -->
+		<action path="/UploadMasterCustomer" type="struts.tkd.act.UploadMasterCustomerInitial" parameter="DIST.CUSTMST">
+			<forward name="forward" path="/UploadMasterCustomer.jsp" />
+		</action>
+		<action path="/UploadMasterCustomerProcess" type="struts.tkd.act.UploadMasterCustomerProcess" parameter="DIST.CUSTMST"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMasterCustomer.jsp">
+			<forward name="forward" path="/UploadMasterCustomer.tkd" />
+		</action>
+		<action path="/ExportLogMasterCustomer" type="struts.tkd.act.ExportLogMasterCustomer" parameter="DIST.CUSTMST">
+			<forward name="forward" path="/UploadMasterCustomer.tkd" />
+		</action>
+		<action path="/ViewMasterCustomer" type="struts.tkd.act.ViewMasterCustomerInitial" parameter="DIST.CUSTMST">
+			<forward name="forward" path="/ViewMasterCustomer.jsp" />
+		</action>
+		<action path="/ExportMasterCustomer" type="struts.tkd.act.ExportMasterCustomer" parameter="DIST.CUSTMST">
+			<forward name="forward" path="/ViewMasterCustomer.tkd" />
+		</action>
+		<action path="/DeleteMasterCustomer" type="struts.tkd.act.DeleteMasterCustomer" parameter="DIST.CUSTMST">
+			<forward name="forward" path="/ViewMasterCustomer.tkd" />
+		</action>
+		
+		<!-- MasterGeographic -->
+		<action path="/UploadMasterGeographic" type="struts.tkd.act.UploadMasterGeographicInitial" parameter="DIST.GEOMST">
+			<forward name="forward" path="/UploadMasterGeographic.jsp" />
+		</action>
+		<action path="/UploadMasterGeographicProcess" type="struts.tkd.act.UploadMasterGeographicProcess" parameter="DIST.GEOMST"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMasterGeographic.jsp">
+			<forward name="forward" path="/UploadMasterGeographic.tkd" />
+		</action>
+		<action path="/ExportLogMasterGeographic" type="struts.tkd.act.ExportLogMasterGeographic" parameter="DIST.GEOMST">
+			<forward name="forward" path="/UploadMasterGeographic.tkd" />
+		</action>
+		<action path="/ViewMasterGeographic" type="struts.tkd.act.ViewMasterGeographicInitial" parameter="DIST.GEOMST">
+			<forward name="forward" path="/ViewMasterGeographic.jsp" />
+		</action>
+		<action path="/ExportMasterGeographic" type="struts.tkd.act.ExportMasterGeographic" parameter="DIST.GEOMST">
+			<forward name="forward" path="/ViewMasterGeographic.tkd" />
+		</action>
+		<action path="/DeleteMasterGeographic" type="struts.tkd.act.DeleteMasterGeographic" parameter="DIST.GEOMST">
+			<forward name="forward" path="/ViewMasterGeographic.tkd" />
+		</action>
+		
+		<!-- MappingProduct -->
+		<action path="/UploadMappingProduct" type="struts.tkd.act.UploadMappingProductInitial" parameter="DIST.PRDMAP">
+			<forward name="forward" path="/UploadMappingProduct.jsp" />
+		</action>
+		<action path="/UploadMappingProductProcess" type="struts.tkd.act.UploadMappingProductProcess" parameter="DIST.PRDMAP"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMappingProduct.jsp">
+			<forward name="forward" path="/UploadMappingProduct.tkd" />
+		</action>
+		<action path="/ExportLogMappingProduct" type="struts.tkd.act.ExportLogMappingProduct" parameter="DIST.PRDMAP">
+			<forward name="forward" path="/UploadMappingProduct.tkd" />
+		</action>
+		<action path="/ViewMappingProduct" type="struts.tkd.act.ViewMappingProductInitial" parameter="DIST.PRDMAP">
+			<forward name="forward" path="/ViewMappingProduct.jsp" />
+		</action>
+		<action path="/ExportMappingProduct" type="struts.tkd.act.ExportMappingProduct" parameter="DIST.PRDMAP"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ExportMappingProduct.tkd" />
+		</action>
+		<action path="/DeleteMappingProduct" type="struts.tkd.act.DeleteMappingProduct" parameter="DIST.PRDMAP">
+			<forward name="forward" path="/ViewMappingProduct.tkd" />
+		</action>
+		
+		<!-- MappingMR -->
+		<action path="/UploadMappingMR" type="struts.tkd.act.UploadMappingMRInitial" parameter="DIST.MRMAP">
+			<forward name="forward" path="/UploadMappingMR.jsp" />
+		</action>
+		<action path="/UploadMappingMRProcess" type="struts.tkd.act.UploadMappingMRProcess" parameter="DIST.MRMAP"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMappingMR.jsp">
+			<forward name="forward" path="/UploadMappingMR.tkd" />
+		</action>
+		<action path="/ExportLogMappingMR" type="struts.tkd.act.ExportLogMappingMR" parameter="DIST.MRMAP">
+			<forward name="forward" path="/UploadMappingMR.tkd" />
+		</action>
+		<action path="/ViewMappingMR" type="struts.tkd.act.ViewMappingMRInitial" parameter="DIST.MRMAP">
+			<forward name="forward" path="/ViewMappingMR.jsp" />
+		</action>
+		<action path="/ExportMappingMR" type="struts.tkd.act.ExportMappingMR" parameter="DIST.MRMAP"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ExportMappingMR.tkd" />
+		</action>
+		<action path="/DeleteMappingMR" type="struts.tkd.act.DeleteMappingMR" parameter="DIST.MRMAP">
+			<forward name="forward" path="/ViewMappingMR.tkd" />
+		</action>
+		
+		<!-- MappingCustomer -->
+		<action path="/UploadMappingCustomer" type="struts.tkd.act.UploadMappingCustomerInitial" parameter="DIST.CUSTMAP">
+			<forward name="forward" path="/UploadMappingCustomer.jsp" />
+		</action>
+		<action path="/UploadMappingCustomerProcess" type="struts.tkd.act.UploadMappingCustomerProcess" parameter="DIST.CUSTMAP"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMappingCustomer.jsp">
+			<forward name="forward" path="/UploadMappingCustomer.tkd" />
+		</action>
+		<action path="/ExportLogMappingCustomer" type="struts.tkd.act.ExportLogMappingCustomer" parameter="DIST.CUSTMAP">
+			<forward name="forward" path="/UploadMappingCustomer.tkd" />
+		</action>
+		<action path="/ViewMappingCustomer" type="struts.tkd.act.ViewMappingCustomerInitial" parameter="DIST.CUSTMAP">
+			<forward name="forward" path="/ViewMappingCustomer.jsp" />
+		</action>
+		<action path="/ExportMappingCustomer" type="struts.tkd.act.ExportMappingCustomer" parameter="DIST.CUSTMAP"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ExportMappingCustomer.tkd" />
+		</action>
+		<action path="/DeleteMappingCustomer" type="struts.tkd.act.DeleteMappingCustomer" parameter="DIST.CUSTMAP">
+			<forward name="forward" path="/ViewMappingCustomer.tkd" />
+		</action>
+		
+		<!-- MappingHospitalTarget -->
+		<action path="/UploadMappingHospitalTarget" type="struts.tkd.act.UploadMappingHospitalTargetInitial" parameter="DIST.HPTARGET">
+			<forward name="forward" path="/UploadMappingHospitalTarget.jsp" />
+		</action>
+		<action path="/UploadMappingHospitalTargetProcess" type="struts.tkd.act.UploadMappingHospitalTargetProcess" parameter="DIST.HPTARGET"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMappingHospitalTarget.jsp">
+			<forward name="forward" path="/UploadMappingHospitalTarget.tkd" />
+		</action>
+		<action path="/ExportLogMappingHospitalTarget" type="struts.tkd.act.ExportLogMappingHospitalTarget" parameter="DIST.HPTARGET">
+			<forward name="forward" path="/UploadMappingHospitalTarget.tkd" />
+		</action>
+		<action path="/ViewMappingHospitalTarget" type="struts.tkd.act.ViewMappingHospitalTargetInitial" parameter="DIST.HPTARGET">
+			<forward name="forward" path="/ViewMappingHospitalTarget.jsp" />
+		</action>
+		<action path="/ExportMappingHospitalTarget" type="struts.tkd.act.ExportMappingHospitalTarget" parameter="DIST.HPTARGET">
+			<forward name="forward" path="/ViewMappingHospitalTarget.tkd" />
+		</action>
+		<action path="/DeleteMappingHospitalTarget" type="struts.tkd.act.DeleteMappingHospitalTarget" parameter="DIST.HPTARGET">
+			<forward name="forward" path="/ViewMappingHospitalTarget.tkd" />
+		</action>
+		
+		<!-- MappingExfactoryTarget -->
+		<action path="/UploadMappingExfactoryTarget" type="struts.tkd.act.UploadMappingExfactoryTargetInitial" parameter="DIST.EFTARGET">
+			<forward name="forward" path="/UploadMappingExfactoryTarget.jsp" />
+		</action>
+		<action path="/UploadMappingExfactoryTargetProcess" type="struts.tkd.act.UploadMappingExfactoryTargetProcess" parameter="DIST.EFTARGET"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadMappingExfactoryTarget.jsp">
+			<forward name="forward" path="/UploadMappingExfactoryTarget.tkd" />
+		</action>
+		<action path="/ExportLogMappingExfactoryTarget" type="struts.tkd.act.ExportLogMappingExfactoryTarget" parameter="DIST.EFTARGET">
+			<forward name="forward" path="/UploadMappingExfactoryTarget.tkd" />
+		</action>
+		<action path="/ViewMappingExfactoryTarget" type="struts.tkd.act.ViewMappingExfactoryTargetInitial" parameter="DIST.EFTARGET">
+			<forward name="forward" path="/ViewMappingExfactoryTarget.jsp" />
+		</action>
+		<action path="/ExportMappingExfactoryTarget" type="struts.tkd.act.ExportMappingExfactoryTarget" parameter="DIST.EFTARGET">
+			<forward name="forward" path="/ViewMappingExfactoryTarget.tkd" />
+		</action>
+		<action path="/DeleteMappingExfactoryTarget" type="struts.tkd.act.DeleteMappingExfactoryTarget" parameter="DIST.EFTARGET">
+			<forward name="forward" path="/ViewMappingExfactoryTarget.tkd" />
+		</action>
+		
+		<!-- ViewExceptionUnmapProduct -->
+		<action path="/ViewExceptionProduct" type="struts.tkd.act.ViewExceptionProductInitial" parameter="DIST.UNMPPRD">
+			<forward name="forward" path="/ViewExceptionProduct.jsp" />
+		</action>
+		<action path="/ExportExceptionProduct" type="struts.tkd.act.ExportExceptionProduct" parameter="DIST.UNMPPRD">
+			<forward name="forward" path="/ViewExceptionProduct.tkd" />
+		</action>
+		
+		<!-- ViewExceptionUnmapCustomer -->
+		<action path="/ViewExceptionCustomer" type="struts.tkd.act.ViewExceptionCustomerInitial" parameter="DIST.UNMPCUST">
+			<forward name="forward" path="/ViewExceptionCustomer.jsp" />
+		</action>
+		<action path="/ExportExceptionCustomer" type="struts.tkd.act.ExportExceptionCustomer" parameter="DIST.UNMPCUST">
+			<forward name="forward" path="/ViewExceptionCustomer.tkd" />
+		</action>
+		
+		<!-- ViewExceptionDistributorFiles -->
+		<action path="/ViewExceptionDistributorFiles" type="struts.tkd.act.ViewExceptionDistributorFilesInitial" parameter="DIST.DISTFILEEXCP">
+			<forward name="forward" path="/ViewExceptionDistributorFiles.jsp" />
+		</action>
+		
+		<!-- ViewExceptionDistributorAdjustmentFiles -->
+		<action path="/ViewExceptionDistributorAdjustmentFiles" type="struts.tkd.act.ViewExceptionDistributorAdjustmentFilesInitial" parameter="DIST.DISTADJFILEEXCP">
+			<forward name="forward" path="/ViewExceptionDistributorAdjustmentFiles.jsp" />
+		</action>
+		
+		
+		
+		<!-- DistributorFiles -->
+		<action path="/UploadDistributorFiles" type="struts.tkd.act.UploadDistributorFilesInitial" parameter="DIST.DISTFILE">
+			<forward name="forward" path="/UploadDistributorFiles.jsp" />
+		</action>
+		<action path="/UploadDistributorFilesProcess" type="struts.tkd.act.UploadDistributorFilesProcess" parameter="DIST.DISTFILE"
+				name="FormUploadPage" scope="request" validate="false" input="/UploadDistributorFilesProduct.jsp">
+			<forward name="forward" path="/UploadDistributorFiles.tkd" />
+		</action>
+		<action path="/ExportLogDistributorFiles" type="struts.tkd.act.ExportLogDistributorFiles" parameter="DIST.DISTFILE">
+			<forward name="forward" path="/UploadDistributorFiles.tkd" />
+		</action>
+		<action path="/ViewDistributorFiles" type="struts.tkd.act.ViewDistributorFilesInitial" parameter="DIST.DISTFILE">
+			<forward name="forward" path="/ViewDistributorFiles.jsp" />
+		</action>
+		<action path="/DeleteDistributorFiles" type="struts.tkd.act.DeleteDistributorFiles" parameter="DIST.DISTFILE"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ViewDistributorFiles.tkd" />
+		</action>
+		<action path="/ExportViewDistributorFiles" type="struts.tkd.act.ExportViewDistributorFiles" parameter="DIST.DISTFILE"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ViewDistributorFiles.tkd" />
+		</action>
+		
+		<!-- DistributorAdjustmentFiles -->
+		<action path="/UploadDistributorAdjustmentFiles" type="struts.tkd.act.UploadDistributorAdjustmentFilesInitial" parameter="DIST.DISTADJFILE">
+			<forward name="forward" path="/UploadDistributorAdjustmentFiles.jsp" />
+		</action>
+		<action path="/UploadDistributorAdjustmentFilesProcess" type="struts.tkd.act.UploadDistributorAdjustmentFilesProcess" parameter="DIST.DISTADJFILE"
+				name="FormUploadPagePeriod" scope="request" validate="false" input="/UploadDistributorAdjustmentFiles.jsp">
+			<forward name="forward" path="/UploadDistributorAdjustmentFiles.tkd" />
+		</action>
+		<action path="/ExportLogDistributorAdjustmentFiles" type="struts.tkd.act.ExportLogDistributorAdjustmentFiles" parameter="DIST.DISTADJFILE">
+			<forward name="forward" path="/UploadDistributorAdjustmentFiles.tkd" />
+		</action>
+		<action path="/ViewDistributorAdjustmentFiles" type="struts.tkd.act.ViewDistributorAdjustmentFilesInitial" parameter="DIST.DISTADJFILE">
+			<forward name="forward" path="/ViewDistributorAdjustmentFiles.jsp" />
+		</action>
+		<action path="/DeleteDistributorAdjustmentFiles" type="struts.tkd.act.DeleteDistributorAdjustmentFiles" parameter="DIST.DISTADJFILE"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ViewDistributorAdjustmentFiles.tkd" />
+		</action>
+		<action path="/ExportViewDistributorAdjustmentFiles" type="struts.tkd.act.ExportViewDistributorAdjustmentFiles" parameter="DIST.DISTADJFILE"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ViewDistributorAdjustmentFiles.tkd" />
+		</action>
+		
+		<!-- ProcessToReport -->
+		<action path="/ProcessToReport" type="struts.tkd.act.ProcessToReportInitial" parameter="DIST.DISTRUN">
+			<forward name="forward" path="/ProcessToReport.jsp" />
+		</action>
+		<action path="/ProcessToReportProcess" type="struts.tkd.act.ProcessToReportProcess" parameter="DIST.DISTRUN"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ProcessToReportResult.jsp" />
+			<forward name="forward2" path="/ProcessToReport.tkd" />
+			<forward name="error" path="/ProcessToReport.jsp" />
+			<forward name="loading" path="/ProcessLoading.tkd" />
+		</action>
+		
+		<!-- ProcessAdjustmentToReport -->
+		<action path="/ProcessAdjustmentToReport" type="struts.tkd.act.ProcessAdjustmentToReportInitial" parameter="DIST.DISTADJRUN">
+			<forward name="forward" path="/ProcessAdjustmentToReport.jsp" />
+		</action>
+		<action path="/ProcessAdjustmentToReportProcess" type="struts.tkd.act.ProcessAdjustmentToReportProcess" parameter="DIST.DISTADJRUN"
+				name="FormParSystem" scope="request" validate="false">
+			<forward name="forward" path="/ProcessToReportResult.jsp" />
+			<forward name="forward2" path="/ProcessAdjustmentToReport.tkd" />
+			<forward name="error" path="/ProcessAdjustmentToReport.jsp" />
+			<forward name="loading" path="/ProcessLoading.tkd" />
+		</action>
+		
+		<!-- ProcessLoading  -->
+		<action path="/JobStatus" type="struts.tkd.act.JobStatus" parameter="MustLogin">
+			<forward name="forward" path="/JobStatus.jsp" />
+		</action>
+		<action path="/ProcessToReportResult" type="struts.tkd.act.ProcessToReportResultInitial" parameter="MustLogin">
+			<forward name="forward" path="/ProcessToReportResult.jsp" />
+		</action>
+		<action path="/ProcessLoading" type="org.apache.struts.actions.ForwardAction" parameter="/ProcessLoading.jsp" />
+		
+		<!-- ColumnMapping -->
+		<action path="/AddColumnMapping" type="struts.tkd.act.AddColumnMappingInitial" parameter="DIST.COLMAP">
+			<forward name="forward" path="/AddColumnMapping.jsp" />
+		</action>
+		<action path="/AddColumnMappingProcess" type="struts.tkd.act.AddColumnMappingProcess" parameter="DIST.COLMAP"
+				name="FormColumnMapping" scope="request" validate="false">
+			<forward name="forward" path="/AddColumnMapping.tkd" />
+			<forward name="edit" path="/ViewColumnMapping.tkd" />
+		</action>
+		<action path="/ViewColumnMapping" type="struts.tkd.act.ViewColumnMappingInitial" parameter="DIST.COLMAP">
+			<forward name="forward" path="/ViewColumnMapping.jsp" />
+		</action>
+		<action path="/DeleteColumnMapping" type="struts.tkd.act.DeleteColumnMapping" parameter="DIST.COLMAP">
+			<forward name="forward" path="/ViewColumnMapping.tkd" />
+		</action>
+		<action path="/ExportColumnMapping" type="struts.tkd.act.ExportColumnMapping" parameter="DIST.COLMAP"/>
+		<action path="/EditColumnMapping" type="struts.tkd.act.EditColumnMappingInitial" parameter="DIST.COLMAP">
+			<forward name="forward" path="/EditColumnMapping.jsp" />
+		</action>
+		<action path="/UploadColumnMapping" type="struts.tkd.act.UploadColumnMappingInitial" parameter="DIST.COLMAP">
+			<forward name="forward" path="/UploadColumnMapping.jsp" />
+		</action>
+		<action path="/UploadColumnMappingProcess" type="struts.tkd.act.UploadColumnMappingProcess" parameter="DIST.COLMAP"
+				name="FormUploadPage" scope="request" validate="false">
+			<forward name="forward" path="/UploadColumnMapping.tkd" />
+		</action>
+		<action path="/ExportLogColumnMapping" type="struts.tkd.act.ExportLogColumnMapping" parameter="DIST.COLMAP">
+			<forward name="forward" path="/UploadColumnMapping.tkd" />
+		</action>
+		
+		<!-- Inventory -->
+		<action path="/UploadInventory" type="struts.tkd.act.UploadInventoryInitial" parameter="DIST.INVTFILE">
+			<forward name="forward" path="/UploadInventory.jsp" />
+		</action>
+		<action path="/UploadInventoryProcess" type="struts.tkd.act.UploadInventoryProcess" parameter="DIST.INVTFILE"
+				name="FormUploadPageTier" scope="request" validate="false" input="/UploadInventory.jsp">
+			<forward name="forward" path="/UploadInventory.tkd" />
+		</action>
+		<action path="/ExportLogInventory" type="struts.tkd.act.ExportLogInventory" parameter="DIST.INVTFILE">
+			<forward name="forward" path="/UploadInventory.tkd" />
+		</action>
+		<action path="/ViewInventory" type="struts.tkd.act.ViewInventoryInitial" parameter="DIST.INVTFILE">
+			<forward name="forward" path="/ViewInventory.jsp" />
+		</action>
+		<action path="/DeleteInventory" type="struts.tkd.act.DeleteInventory" parameter="DIST.INVTFILE">
+			<forward name="forward" path="/ViewInventory.tkd" />
+		</action>
+		<action path="/ExportInventory" type="struts.tkd.act.ExportInventory" parameter="DIST.INVTFILE">
+			<forward name="forward" path="/ViewInventory.tkd" />
+		</action>
+		
+		<!-- Copy previous period data -->
+		<action path="/CopyPreviousPeriodData" type="struts.tkd.act.CopyPreviousPeriodData" parameter="MustLogin">
+			<forward name="masterproduct" path="/ViewMasterProduct.tkd" />
+			<forward name="masterdistributorprice" path="/ViewMasterDistributorPrice.tkd" />
+			<forward name="others" path="/Login.tkd" />
+		</action>
+		
+		<!-- Adminpanel Summary  -->
+		<action path="/ViewUISummary" type="struts.tkd.act.ViewUISummaryInitial" parameter="MustLogin">
+			<forward name="forward" path="/ViewUISummary.jsp" />
+		</action>
+	</action-mappings>
+
+	<controller processorClass="org.apache.struts.action.RequestProcessor" />
+</struts-config>
